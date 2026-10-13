@@ -2,6 +2,8 @@
 
 The evidence below describes the earlier 0.1.2 source. It does not validate the current working tree or establish OpenAI/skills.sh listing. See [the current official-requirements audit](openai-skills-readiness.md), which supersedes OpenAI readiness claims below.
 
+The project was later renamed from `mindmap-skills` to `markmap-skills`; names and URLs below are kept as recorded at the time.
+
 Tracking document and release verification dossier for `mindmap-skills` conforming to the marketplace readiness standards defined in `04-PROCEDURAL/Workflows/skill-plugin-marketplace-readiness.md`.
 
 ---

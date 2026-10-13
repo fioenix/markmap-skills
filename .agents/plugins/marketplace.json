@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "mindmap-skills",
+      "name": "markmap-skills",
       "source": {
         "source": "local",
         "path": "./"

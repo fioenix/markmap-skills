@@ -1,6 +1,6 @@
-# Contributing to mindmap-skills
+# Contributing to markmap-skills
 
-Thank you for contributing to `mindmap-skills`! Contributions aimed at refining cognitive structuring, enhancing Markmap syntax support, reinforcing visual reliability, or hardening security are welcome.
+Thank you for contributing to `markmap-skills`! Contributions aimed at refining cognitive structuring, enhancing Markmap syntax support, reinforcing visual reliability, or hardening security are welcome.
 
 ## 1. Core Principles
 

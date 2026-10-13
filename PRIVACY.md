@@ -1,6 +1,6 @@
 # Privacy Policy
 
-`mindmap-skills` is engineered with an offline-first, decentralized posture that respects user privacy and data sovereignty:
+`markmap-skills` is engineered with an offline-first, decentralized posture that respects user privacy and data sovereignty:
 
 ## 1. Backend, Network Requests & Telemetry
 
@@ -23,4 +23,4 @@
 
 When reporting bugs or opening pull requests on GitHub, contributors must ensure that all test cases, prompt snippets, and diagrams are thoroughly anonymized and stripped of proprietary identifiers.
 
-For privacy-related inquiries, open an issue on [GitHub Issues](https://github.com/fioenix/mindmap-skills/issues).
+For privacy-related inquiries, open an issue on [GitHub Issues](https://github.com/fioenix/markmap-skills/issues).

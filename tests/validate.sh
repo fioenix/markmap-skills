@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Automated validation & test suite for mindmap-skills
+# Automated validation & test suite for markmap-skills
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
 echo "=========================================================="
-echo "   🧠 MINDMAP-SKILLS MARKETPLACE READINESS VALIDATOR      "
+echo "   🧠 MARKMAP-SKILLS MARKETPLACE READINESS VALIDATOR      "
 echo "=========================================================="
 
 echo ""

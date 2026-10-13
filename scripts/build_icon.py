@@ -46,8 +46,8 @@ def render_png(svg_content, png_path, color):
 
 def main():
     repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    light_svg = generate_svg(LIGHT_COLOR, "Mindmap Skills — mindmap")
-    dark_svg = generate_svg(DARK_COLOR, "Mindmap Skills — mindmap, dark")
+    light_svg = generate_svg(LIGHT_COLOR, "Markmap Skills — mindmap")
+    dark_svg = generate_svg(DARK_COLOR, "Markmap Skills — mindmap, dark")
 
     outputs = {
         "assets/icon.svg": light_svg,
@@ -60,7 +60,7 @@ def main():
     print("Updated assets/icon.svg, assets/icon-dark.svg and logo.svg")
 
     icon_png_path = os.path.join(repo_dir, "assets/icon.png")
-    render_png(generate_svg(LIGHT_COLOR, "Mindmap Skills — mindmap", size=512),
+    render_png(generate_svg(LIGHT_COLOR, "Markmap Skills — mindmap", size=512),
                icon_png_path, LIGHT_COLOR)
     print(f"Saved {icon_png_path} (512, 512)")
 
