@@ -2,7 +2,9 @@
 
 The evidence below describes the earlier 0.1.2 source. It does not validate the current working tree or establish OpenAI/skills.sh listing. See [the current official-requirements audit](openai-skills-readiness.md), which supersedes OpenAI readiness claims below.
 
-Tracking document and release verification dossier for `markmap-skills` conforming to the marketplace readiness standards defined in `04-PROCEDURAL/Workflows/skill-plugin-marketplace-readiness.md`.
+The project was later renamed from `mindmap-skills` to `markmap-skills`; names and URLs below are kept as recorded at the time.
+
+Tracking document and release verification dossier for `mindmap-skills` conforming to the marketplace readiness standards defined in `04-PROCEDURAL/Workflows/skill-plugin-marketplace-readiness.md`.
 
 ---
 
@@ -10,7 +12,7 @@ Tracking document and release verification dossier for `markmap-skills` conformi
 
 ### Claude Code Release Profile
 ```yaml
-project: markmap-skills
+project: mindmap-skills
 platform: claude
 target: self-install (and directory submission ready)
 version: 0.1.2
@@ -43,7 +45,7 @@ portal_findings: none (all schema & manifest constraints satisfied)
 publisher: Fioenix (https://github.com/fioenix)
 status: pending-native-recheck
 live_verification:
-  url: https://github.com/fioenix/markmap-skills
+  url: https://github.com/fioenix/mindmap-skills
   version: 0.1.2
   evidence: origin/main @ e8c0636 and tag v0.1.2 report 0.1.2 in all 6 versioned manifests and package-lock.json
   date: 2026-10-10
@@ -51,7 +53,7 @@ live_verification:
 
 ### OpenAI Codex Release Profile
 ```yaml
-project: markmap-skills
+project: mindmap-skills
 platform: openai
 target: self-install (and marketplace ready)
 version: 0.1.2
@@ -84,7 +86,7 @@ portal_findings: none
 publisher: Fioenix (https://github.com/fioenix)
 status: pending-native-recheck
 live_verification:
-  url: https://github.com/fioenix/markmap-skills
+  url: https://github.com/fioenix/mindmap-skills
   version: 0.1.2
   evidence: origin/main @ e8c0636 and tag v0.1.2 report 0.1.2 in all 6 versioned manifests and package-lock.json
   date: 2026-10-10

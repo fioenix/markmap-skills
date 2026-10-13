@@ -67,6 +67,8 @@ Invoke the skill directly in any conversation:
 /markmap-skills:markmap Create an architecture mindmap for this microservices system
 ```
 
+> **Upgrading from `mindmap-skills`?** The plugin was renamed. Run `/plugin uninstall mindmap-skills@fioenix-plugins`, then install `markmap-skills@fioenix-plugins` as above. The command is now `/markmap-skills:markmap`.
+
 #### On Claude Desktop / Web UI:
 1. Navigate to **Customize** → **Plugins** → **Add** → **Add marketplace** → **Add from a repository**.
 2. Enter repository: `fioenix/markmap-skills`.
