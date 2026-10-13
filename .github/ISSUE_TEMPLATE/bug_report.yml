@@ -32,7 +32,7 @@ body:
     attributes:
       label: Input Prompt / Content (Anonymized)
       description: Provide the prompt or markdown text that produced the error.
-      placeholder: "E.g. /mindmap-skills:markmap create mindmap for..."
+      placeholder: "E.g. /markmap-skills:markmap create mindmap for..."
     validations:
       required: false
   - type: textarea

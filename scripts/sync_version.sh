@@ -10,7 +10,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-PLUGIN_NAME="mindmap-skills"
+PLUGIN_NAME="markmap-skills"
 
 # Parallel arrays: manifest file and the jq path of its version field.
 # .agents/plugins/marketplace.json carries no version field and is intentionally absent.

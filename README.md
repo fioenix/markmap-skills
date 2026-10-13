@@ -1,11 +1,11 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/icon-dark.svg">
-    <img src="assets/icon.svg" width="96" height="96" alt="mindmap-skills icon">
+    <img src="assets/icon.svg" width="96" height="96" alt="markmap-skills icon">
   </picture>
 </p>
 
-<h1 align="center">mindmap-skills</h1>
+<h1 align="center">markmap-skills</h1>
 
 <p align="center">
   <b>Universal, lightweight Markmap mindmap plugin for AI Agents (Claude Code, OpenAI Codex, Google Antigravity).</b><br>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/fioenix/mindmap-skills/actions/workflows/ci.yml"><img src="https://github.com/fioenix/mindmap-skills/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
-  <a href="https://github.com/fioenix/mindmap-skills"><img src="https://img.shields.io/badge/Packaging-Checked-7FE2CE?logo=anthropic&logoColor=0B0B17" alt="Packaging checked locally" /></a>
-  <a href="https://github.com/fioenix/mindmap-skills"><img src="https://img.shields.io/badge/Runtime-Zero--Daemon-9750C4" alt="Zero Daemon" /></a>
-  <a href="https://github.com/fioenix/mindmap-skills"><img src="https://img.shields.io/badge/Agents-Claude%20%7C%20Codex%20%7C%20Antigravity-18181b" alt="Agent Support" /></a>
+  <a href="https://github.com/fioenix/markmap-skills/actions/workflows/ci.yml"><img src="https://github.com/fioenix/markmap-skills/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
+  <a href="https://github.com/fioenix/markmap-skills"><img src="https://img.shields.io/badge/Packaging-Checked-7FE2CE?logo=anthropic&logoColor=0B0B17" alt="Packaging checked locally" /></a>
+  <a href="https://github.com/fioenix/markmap-skills"><img src="https://img.shields.io/badge/Runtime-Zero--Daemon-9750C4" alt="Zero Daemon" /></a>
+  <a href="https://github.com/fioenix/markmap-skills"><img src="https://img.shields.io/badge/Agents-Claude%20%7C%20Codex%20%7C%20Antigravity-18181b" alt="Agent Support" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" /></a>
 </p>
@@ -31,7 +31,7 @@ Most AI mindmap solutions suffer from two fatal architectural pitfalls:
 
 ### Architecture Comparison
 
-| Capability | Heavyweight MCP / Headless | Raw LLM Output | **mindmap-skills** |
+| Capability | Heavyweight MCP / Headless | Raw LLM Output | **markmap-skills** |
 |---|---|---|---|
 | **Runtime Footprint** | 300MB+ Headless Chrome daemon | 0 MB | **0 MB (Zero daemon)** |
 | **Idle Token Tax** | 1,000+ tokens burned per turn | 0 tokens | **0 token overhead when idle** |
@@ -44,7 +44,7 @@ Most AI mindmap solutions suffer from two fatal architectural pitfalls:
 
 ## 🔍 Before vs. After Comparison
 
-| Scenario | Default LLM Output (Before) | Structured with `mindmap-skills` (After) |
+| Scenario | Default LLM Output (Before) | Structured with `markmap-skills` (After) |
 |---|---|---|
 | **Gateway Architecture** | `- The system uses an API Gateway running on Cloudflare Workers to handle user requests, authenticating users via JWT tokens signed with RSA encryption...` (32 words, verbose narrative) | `- **Auth**: JWT with RSA signatures`<br>`- **Rate Limit**: Token bucket at edge`<br>`- ~~Kong Gateway: Excessive idle cost~~` (Concise, keyword-first, tracks rejected alternatives) |
 | **Branch Structure** | Dumps 14 flat sibling bullet points on the root, exceeding human working memory capacity. | Clusters into 4 MECE categories (Ingress, Compute, Storage, Telemetry); deep specs fold automatically with `<!-- markmap: fold -->`. |
@@ -59,23 +59,23 @@ Most AI mindmap solutions suffer from two fatal architectural pitfalls:
 #### Via Public Marketplace (Recommended):
 In your Claude Code terminal session:
 ```text
-/plugin marketplace add fioenix/mindmap-skills
-/plugin install mindmap-skills@fioenix-plugins
+/plugin marketplace add fioenix/markmap-skills
+/plugin install markmap-skills@fioenix-plugins
 ```
 Invoke the skill directly in any conversation:
 ```text
-/mindmap-skills:markmap Create an architecture mindmap for this microservices system
+/markmap-skills:markmap Create an architecture mindmap for this microservices system
 ```
 
 #### On Claude Desktop / Web UI:
 1. Navigate to **Customize** → **Plugins** → **Add** → **Add marketplace** → **Add from a repository**.
-2. Enter repository: `fioenix/mindmap-skills`.
-3. In Discover, select **mindmap-skills** and click **Add**.
+2. Enter repository: `fioenix/markmap-skills`.
+3. In Discover, select **markmap-skills** and click **Add**.
 4. Invoke in chat using `/markmap` or via the `+` menu.
 
 #### Local Development / Manual Link:
 ```bash
-claude plugin add ~/Projects/mindmap-skills
+claude plugin add ~/Projects/markmap-skills
 ```
 
 ---
@@ -84,7 +84,7 @@ claude plugin add ~/Projects/mindmap-skills
 
 #### Via Skills CLI:
 ```bash
-DISABLE_TELEMETRY=1 npx --yes skills@1.5.20 add fioenix/mindmap-skills --skill markmap --agent codex --global
+DISABLE_TELEMETRY=1 npx --yes skills@1.5.20 add fioenix/markmap-skills --skill markmap --agent codex --global
 ```
 
 This installs the skill, not an approved OpenAI directory plugin. The Skills CLI normally reports install telemetry; this command opts out. [skills.sh listings](https://skills.sh/docs/faq) are driven by user installs with telemetry. No listing or OpenAI approval is claimed here.
@@ -92,7 +92,7 @@ This installs the skill, not an approved OpenAI directory plugin. The Skills CLI
 #### OpenAI Platform Plugin Submission:
 Build the skills-only upload ZIP locally:
 ```bash
-python3 scripts/package_plugin.py /tmp/mindmap-skills-0.1.3.zip
+python3 scripts/package_plugin.py /tmp/markmap-skills-0.1.3.zip
 ```
 The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Upload, identity verification, review, and publication require owner action in [Platform Plugins](https://platform.openai.com/plugins). See the [current checklist and remaining steps](docs/openai-skills-readiness.md).
 
@@ -100,11 +100,11 @@ The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exact
 ```bash
 # In a specific project
 mkdir -p .agents/skills
-cp -r ~/Projects/mindmap-skills/skills/markmap .agents/skills/
+cp -r ~/Projects/markmap-skills/skills/markmap .agents/skills/
 
 # Or machine-global
 mkdir -p ~/.agents/skills
-ln -s ~/Projects/mindmap-skills/skills/markmap ~/.agents/skills/markmap
+ln -s ~/Projects/markmap-skills/skills/markmap ~/.agents/skills/markmap
 ```
 
 ---
@@ -114,13 +114,13 @@ ln -s ~/Projects/mindmap-skills/skills/markmap ~/.agents/skills/markmap
 #### Machine-Global:
 ```bash
 mkdir -p ~/.gemini/config/skills
-ln -s ~/Projects/mindmap-skills/skills/markmap ~/.gemini/config/skills/markmap
+ln -s ~/Projects/markmap-skills/skills/markmap ~/.gemini/config/skills/markmap
 ```
 
 #### Workspace-Local:
 ```bash
 mkdir -p .agents/skills
-cp -r ~/Projects/mindmap-skills/skills/markmap .agents/skills/
+cp -r ~/Projects/markmap-skills/skills/markmap .agents/skills/
 ```
 
 ---
@@ -171,7 +171,7 @@ markmap:
 
 ## 🔄 Opportunistic Multi-Skill Synergy
 
-`mindmap-skills` is built on a **Zero-Coercion, Zero-Hard-Dependency** model: it works 100% standalone out of the box. However, when paired with complementary skills inside an agent harness, it acts as a high-value **Visual Converger**:
+`markmap-skills` is built on a **Zero-Coercion, Zero-Hard-Dependency** model: it works 100% standalone out of the box. However, when paired with complementary skills inside an agent harness, it acts as a high-value **Visual Converger**:
 
 | Skill in Harness | Upstream Role | `markmap` Downstream Role |
 |---|---|---|
@@ -205,7 +205,7 @@ markmap:
 ## 🛠️ Repository Architecture
 
 ```text
-mindmap-skills/
+markmap-skills/
 ├── .github/
 │   ├── workflows/
 │   │   └── ci.yml              # Automated GitHub Actions CI workflow
@@ -265,4 +265,4 @@ mindmap-skills/
 
 * **License**: [MIT License](LICENSE) © [Fioenix](https://github.com/fioenix)
 * **Contributing**: Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting pull requests.
-* **Issues & Feedback**: [GitHub Issues](https://github.com/fioenix/mindmap-skills/issues)
+* **Issues & Feedback**: [GitHub Issues](https://github.com/fioenix/markmap-skills/issues)

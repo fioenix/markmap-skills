@@ -1,5 +1,5 @@
 interface:
-  display_name: "Mindmap Skills"
+  display_name: "Markmap Skills"
   short_description: "Interactive Markmap mindmaps with cognitive structuring"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"

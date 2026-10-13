@@ -1,13 +1,13 @@
 {
-  "name": "mindmap-skills",
+  "name": "markmap-skills",
   "version": "0.1.3",
   "description": "Universal Markmap mindmaps for AI agents with strict cognitive structuring and standalone HTML rendering.",
   "author": {
     "name": "Fioenix",
     "url": "https://github.com/fioenix"
   },
-  "homepage": "https://github.com/fioenix/mindmap-skills",
-  "repository": "https://github.com/fioenix/mindmap-skills",
+  "homepage": "https://github.com/fioenix/markmap-skills",
+  "repository": "https://github.com/fioenix/markmap-skills",
   "license": "MIT",
   "keywords": [
     "markmap",
@@ -19,16 +19,16 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Mindmap Skills",
+    "displayName": "Markmap Skills",
     "shortDescription": "Interactive Markmap mindmaps",
     "developerName": "Fioenix",
     "longDescription": "Generate interactive Markmap mindmaps from notes, architecture documents, or topics. Produces editable Markdown and HTML with concise branches, folding, and decision tracking. No background server or maintainer telemetry. Offline HTML rendering requires Node.js and markmap-cli; the alternative template loads pinned libraries from jsDelivr and requires network access. The host agent controls file access and conversation data.",
     "category": "Productivity",
     "capabilities": [],
-    "websiteURL": "https://github.com/fioenix/mindmap-skills",
-    "supportURL": "https://github.com/fioenix/mindmap-skills/issues",
-    "privacyPolicyURL": "https://github.com/fioenix/mindmap-skills/blob/main/PRIVACY.md",
-    "termsOfServiceURL": "https://github.com/fioenix/mindmap-skills/blob/main/TERMS.md",
+    "websiteURL": "https://github.com/fioenix/markmap-skills",
+    "supportURL": "https://github.com/fioenix/markmap-skills/issues",
+    "privacyPolicyURL": "https://github.com/fioenix/markmap-skills/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/fioenix/markmap-skills/blob/main/TERMS.md",
     "defaultPrompt": [
       "Create a Markmap mindmap for this system architecture with up to 7 main branches.",
       "Transform these research notes into an interactive Markmap mindmap with depth 3-4.",
