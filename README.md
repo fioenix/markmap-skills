@@ -98,25 +98,28 @@ python3 scripts/package_plugin.py /tmp/markmap-skills-0.1.4.zip
 ```
 The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Upload, identity verification, review, and publication require owner action in [Platform Plugins](https://platform.openai.com/plugins). See the [historical `0.1.3` readiness audit](docs/openai-skills-readiness.md) for background context (that historical audit does not validate or approve `0.1.4`; the current release requires fresh verification checks and the separate portal owner actions stated above).
 
-#### Via Shared Finolabs Marketplace Catalog (`agybird`):
-The canonical multi-plugin Codex catalog (`name: "agybird"`, `interface.displayName: "Finolabs"`) is published in `fioenix/agybird` and groups `agybird`, `vietnamizer`, and `markmap-skills` without merging repositories.
+#### Via Shared Finolabs Marketplace Catalog (`Finolabs`):
+The canonical multi-plugin Codex catalog (`name: "Finolabs"`, `interface.displayName: "Finolabs"`) is published in `fioenix/agybird` and groups `agybird` (`agybird@Finolabs`), `vietnamizer` (`vietnamizer@Finolabs`), and `markmap-skills` (`markmap-skills@Finolabs`) without merging repositories.
 
+**Fresh installation (when no legacy `agybird` marketplace is registered):**
 ```bash
 codex plugin marketplace add fioenix/agybird
-codex plugin add markmap-skills@agybird
+codex plugin add markmap-skills@Finolabs
 ```
 
 * **Shared Catalog Registration & Selector**:
-  - Register the published shared catalog `fioenix/agybird` in Codex (or a local `~/Projects/agybird` checkout when testing unpublished catalog changes).
-  - Install using the canonical selector: `markmap-skills@agybird`.
+  - Fresh installs without a prior `agybird` registration can register `fioenix/agybird` directly via Git (or register a local checkout path where `.agents/plugins/marketplace.json` declares `name: "Finolabs"`).
+  - Install using the canonical exact-case selector: `markmap-skills@Finolabs`.
 * **Legacy Compatibility (`markmap-skills@fioenix-plugins`)**:
   - This repository keeps its own `.agents/plugins/marketplace.json` (`name: "fioenix-plugins"`) unchanged for standalone backward compatibility using selector `markmap-skills@fioenix-plugins` (not `@markmap-skills`), rather than renaming or duplicating the canonical `Finolabs` catalog here.
-* **Migration & Rollback**:
+* **Migration (from `@agybird` or `@fioenix-plugins`) & Rollback**:
+  - **Why side-by-side local registration is required for `@agybird` users**: Codex `marketplace upgrade` rejects a catalog whose fetched `name` (`"Finolabs"`) differs from the configured `name` (`"agybird"`), and re-running `marketplace add` with the same Git repository URL before removing `agybird` can reuse the existing Git-registered source instead of creating a new entry. Do **not** use `marketplace upgrade agybird` as a rename mechanism.
   1. **Back up** your current Codex plugin configuration and marketplace registrations before making changes.
-  2. **Register & install** `markmap-skills@agybird` from the shared `fioenix/agybird` catalog (or your local `~/Projects/agybird` checkout for unpublished changes).
-  3. **Verify replacement first**: confirm `markmap-skills@agybird` loads and renders as expected **before** disabling or removing `markmap-skills@fioenix-plugins` or the standalone `fioenix/markmap-skills` marketplace registration.
-  4. **Rollback**: if the shared catalog registration or replacement fails verification, restore your backed-up configuration or re-register this repository's `.agents/plugins/marketplace.json` and re-enable `markmap-skills@fioenix-plugins`.
-* **Release Note (`v0.1.4`)**: Documents shared `Finolabs` (`fioenix/agybird`) Codex catalog registration (`markmap-skills@agybird`) alongside legacy `markmap-skills@fioenix-plugins` compatibility, migration, and rollback guidance; runtime behavior and the standalone compatibility catalog remain unchanged.
+  2. **Prepare a distinct local checkout** of the updated `fioenix/agybird` repository (for example, `git clone https://github.com/fioenix/agybird.git /path/to/finolabs-catalog` or an existing updated local checkout such as `~/Projects/agybird`) and confirm its `.agents/plugins/marketplace.json` declares `"name": "Finolabs"`.
+  3. **Register side-by-side & install**: run `codex plugin marketplace add /path/to/finolabs-catalog` to register `Finolabs` alongside your existing Git-registered `agybird` catalog, then install `codex plugin add markmap-skills@Finolabs` (and `agybird@Finolabs`, `vietnamizer@Finolabs` if used). Keeping the local `Finolabs` catalog registration is sufficient on its own.
+  4. **Verify replacement first, then remove old entries**: confirm the `@Finolabs` plugin(s) load and render as expected **before** removing old `markmap-skills@agybird` (or `markmap-skills@fioenix-plugins`) plugin installations and removing the old `agybird` (or standalone `fioenix/markmap-skills`) marketplace registration via supported Codex CLI commands.
+  5. **Rollback**: because an unpinned `fioenix/agybird` registration now resolves `name: "Finolabs"`, rolling back to `@agybird` requires explicitly registering the pinned pre-rename tag with `codex plugin marketplace add fioenix/agybird --ref v0.2.1` (commit `25ad82943fab90224918603e05fe23f4fa65847a`, which still declares `name: "agybird"`, or registering a retained local snapshot of that catalog), reinstalling your desired `@agybird` selector (`codex plugin add markmap-skills@agybird`), and verifying it works before removing `Finolabs`; alternatively, restore your backed-up configuration or fall back to this repository's standalone `.agents/plugins/marketplace.json` with `markmap-skills@fioenix-plugins`.
+* **Release Note (`v0.1.4`)**: Documents shared `Finolabs` (`fioenix/agybird`) Codex catalog registration (`markmap-skills@Finolabs`) alongside side-by-side local checkout migration from prior `@agybird` and legacy `markmap-skills@fioenix-plugins` compatibility and rollback guidance; runtime behavior and the standalone compatibility catalog remain unchanged.
 
 #### Via Agent Skills Directory:
 ```bash
