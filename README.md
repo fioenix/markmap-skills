@@ -94,9 +94,29 @@ This installs the skill, not an approved OpenAI directory plugin. The Skills CLI
 #### OpenAI Platform Plugin Submission:
 Build the skills-only upload ZIP locally:
 ```bash
-python3 scripts/package_plugin.py /tmp/markmap-skills-0.1.3.zip
+python3 scripts/package_plugin.py /tmp/markmap-skills-0.1.4.zip
 ```
-The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Upload, identity verification, review, and publication require owner action in [Platform Plugins](https://platform.openai.com/plugins). See the [current checklist and remaining steps](docs/openai-skills-readiness.md).
+The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Upload, identity verification, review, and publication require owner action in [Platform Plugins](https://platform.openai.com/plugins). See the [historical `0.1.3` readiness audit](docs/openai-skills-readiness.md) for background context (that historical audit does not validate or approve `0.1.4`; the current release requires fresh verification checks and the separate portal owner actions stated above).
+
+#### Via Shared Finolabs Marketplace Catalog (`agybird`):
+The canonical multi-plugin Codex catalog (`name: "agybird"`, `interface.displayName: "Finolabs"`) is published in `fioenix/agybird` and groups `agybird`, `vietnamizer`, and `markmap-skills` without merging repositories.
+
+```bash
+codex plugin marketplace add fioenix/agybird
+codex plugin add markmap-skills@agybird
+```
+
+* **Shared Catalog Registration & Selector**:
+  - Register the published shared catalog `fioenix/agybird` in Codex (or a local `~/Projects/agybird` checkout when testing unpublished catalog changes).
+  - Install using the canonical selector: `markmap-skills@agybird`.
+* **Legacy Compatibility (`markmap-skills@fioenix-plugins`)**:
+  - This repository keeps its own `.agents/plugins/marketplace.json` (`name: "fioenix-plugins"`) unchanged for standalone backward compatibility using selector `markmap-skills@fioenix-plugins` (not `@markmap-skills`), rather than renaming or duplicating the canonical `Finolabs` catalog here.
+* **Migration & Rollback**:
+  1. **Back up** your current Codex plugin configuration and marketplace registrations before making changes.
+  2. **Register & install** `markmap-skills@agybird` from the shared `fioenix/agybird` catalog (or your local `~/Projects/agybird` checkout for unpublished changes).
+  3. **Verify replacement first**: confirm `markmap-skills@agybird` loads and renders as expected **before** disabling or removing `markmap-skills@fioenix-plugins` or the standalone `fioenix/markmap-skills` marketplace registration.
+  4. **Rollback**: if the shared catalog registration or replacement fails verification, restore your backed-up configuration or re-register this repository's `.agents/plugins/marketplace.json` and re-enable `markmap-skills@fioenix-plugins`.
+* **Release Note (`v0.1.4`)**: Documents shared `Finolabs` (`fioenix/agybird`) Codex catalog registration (`markmap-skills@agybird`) alongside legacy `markmap-skills@fioenix-plugins` compatibility, migration, and rollback guidance; runtime behavior and the standalone compatibility catalog remain unchanged.
 
 #### Via Agent Skills Directory:
 ```bash
