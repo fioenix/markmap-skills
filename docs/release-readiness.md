@@ -1,6 +1,6 @@
 # Historical Release Readiness Dossier
 
-The evidence below describes the earlier 0.1.2 source. It does not validate the current working tree or establish OpenAI/skills.sh listing. See [the current official-requirements audit](openai-skills-readiness.md), which supersedes OpenAI readiness claims below.
+The evidence below describes the earlier 0.1.2 source. It does not validate the current working tree or establish OpenAI/skills.sh listing. See [the current submission status and product decision](openai-skills-readiness.md#current-submission-status-and-product-decision--2026-10-23), which supersedes OpenAI readiness claims below. As of 2026-10-23, the owner reports that OpenAI's portal is not accepting more skills-only submissions; the project remains skills-only and Directory submission is parked. Historical passing checks below do not establish current intake availability or approval.
 
 The project was later renamed from `mindmap-skills` to `markmap-skills`; names and URLs below are kept as recorded at the time.
 
