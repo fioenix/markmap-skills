@@ -90,14 +90,19 @@ DISABLE_TELEMETRY=1 npx --yes skills@1.5.20 add fioenix/markmap-skills --skill m
 
 This installs the skill, not an approved OpenAI directory plugin. The Skills CLI normally reports install telemetry; this command opts out. [skills.sh listings](https://skills.sh/docs/faq) are driven by user installs with telemetry. No listing or OpenAI approval is claimed here.
 
-#### OpenAI Platform Plugin Submission:
-Build the skills-only upload ZIP locally:
+#### OpenAI Directory Status — Submissions Paused:
+
+As of 2026-10-23, the owner reports that the OpenAI submission portal displays: **"We are not accepting more skills-only submissions at this time."** Treat new skills-only submissions as unavailable through that portal. This is an intake restriction, not a rejection of this package after review; no reopening date is known.
+
+**Project decision (2026-10-23): keep `markmap-skills` skills-only.** Continue using the Skills CLI and marketplace catalogs documented here. We will not add an MCP server solely to qualify for Directory submission. Reconsider MCP only when a validated user workflow needs server-backed capabilities independently of Marketplace access. See the [decision, evidence, and readiness limits](docs/openai-skills-readiness.md#current-submission-status-and-product-decision--2026-10-23).
+
+Local packaging remains available for testing and a future eligible submission; building a ZIP does not mean OpenAI is accepting it:
 ```bash
 python3 scripts/package_plugin.py /tmp/markmap-skills-0.1.4.zip
 ```
-The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Upload, identity verification, review, and publication require owner action in [Platform Plugins](https://platform.openai.com/plugins). See the [historical `0.1.3` readiness audit](docs/openai-skills-readiness.md) for background context (that historical audit does not validate or approve `0.1.4`; the current release requires fresh verification checks and the separate portal owner actions stated above).
+The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Resume submission preparation only after confirming that [Platform Plugins](https://platform.openai.com/plugins) accepts the submitting organization and package type. Identity verification, scans, review, and publication are separate gates; local checks and historical readiness receipts do not establish approval.
 
-This OpenAI package declares Desktop only to retain its local Node.js/npx rendering workflow. Directory installation requires the ChatGPT desktop app, and use requires a locally running thread. The CDN template remains available within that package; its presence does not remove the declared platform restriction. Direct skill installation through other distributions is unchanged.
+This OpenAI package retains its Desktop-only declaration for the local Node.js/npx rendering workflow. If accepted and published in the Directory in the future, that declaration restricts installation to the ChatGPT desktop app and use to locally running threads. The CDN template does not remove this restriction. The declaration neither creates an OpenAI listing nor bypasses the current intake restriction. Direct skill installation through other distributions is unchanged.
 
 #### Via Shared Finolabs Marketplace Catalog (`Finolabs`):
 The canonical multi-plugin Codex catalog (`name: "Finolabs"`, `interface.displayName: "Finolabs"`) is published in `fioenix/agybird` and groups `agybird` (`agybird@Finolabs`), `vietnamizer` (`vietnamizer@Finolabs`), and `markmap-skills` (`markmap-skills@Finolabs`) without merging repositories.

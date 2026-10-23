@@ -1,8 +1,24 @@
 # OpenAI Plugin and skills.sh Readiness
 
+## Current submission status and product decision — 2026-10-23
+
+**Disposition: retain skills-only; OpenAI Directory submission is parked while the portal is not accepting new skills-only submissions.** This document is not an instruction to submit immediately.
+
+**Evidence and scope:** On 2026-10-23 the owner provided this message from the OpenAI submission portal: **"We are not accepting more skills-only submissions at this time."** The message was not independently re-observed in an authenticated portal session. Public OpenAI documentation still describes skills-only packages and submission steps; that describes the package model, not proof that intake is open for this organization. The message establishes an intake blocker for the reported submission attempt, not a package-review rejection, a permanent ban, or a known reopening date.
+
+**Owner decision:** Keep the current skill, resources, and local/CDN rendering workflows. Continue distribution through the documented Skills CLI and marketplace catalogs. Do not add a local or remote MCP server merely to change submission category. A remote render/export service or persistent, versioned maps could justify MCP only if an independently useful user workflow and repeat demand are validated; neither is approved for implementation by this decision. Marketplace eligibility and approval would still require separate verification.
+
+**Resume condition:** Before any future upload or submission, confirm current portal access and skills-only intake for the submitting organization. Recheck applicable requirements, finish missing runtime acceptance, rebuild from the selected source revision, and obtain authority for the actual upload/submission. Do not remove the Desktop-only declaration, add placeholder MCP functionality, or claim approval to work around the intake restriction.
+
+**Readiness boundaries:** PR [#13](https://github.com/fioenix/markmap-skills/pull/13) merged the privacy, render-error recovery, restricted-data, and README corrections into `main` at `1a2762b1fe24cb2ad425e24a6664bbab18573883`; its PR CI and main push CI passed. Public privacy-policy readback and the then-current ZIP/source match were verified. Those receipts predate this documentation update. A local package can be tested and retained while submission is parked. Clean Desktop installation, complete browser/runtime/CSP acceptance, consuming-host restricted-data behavior, and OpenAI portal ingestion/review remain unverified. The earlier policy readback does not establish current submission access.
+
+References for the supported model and requirements, not evidence of reopened intake: [OpenAI submission flow](https://developers.openai.com/plugins/deploy/submission), [plugin guidelines](https://developers.openai.com/plugins/plugin-guidelines), [Desktop-only guidance](https://developers.openai.com/plugins/deploy/desktop-only).
+
+## Historical review context
+
 The original review below was recorded on 2026-10-10, starting from `main` at `7a2fdc0` with an initially clean tree while preparing the 0.1.3 candidate. Those execution receipts are historical, not new test results for the current source.
 
-## Current-source reconciliation — 2026-10-16
+## Historical source reconciliation — 2026-10-16
 
 - Read-only inspection found `main` at `7c6aaf1378491200137eb62b04d7b5d16818144a`, version 0.1.3, with a clean working tree before this documentation correction. The configured origin is `git@github.com:fioenix/markmap-skills.git`. Commit `a501afd` prepared 0.1.3; `7c6aaf1` subsequently renamed the project from `mindmap-skills` to `markmap-skills`. This is committed source, no longer an unpublished working-tree candidate. No fresh remote synchronization was performed.
 - Git blob comparison against `a501afd` found identical content for `skills/markmap/SKILL.md`, `skills/markmap/assets/template.html`, `skills/markmap/scripts/render.sh`, `scripts/package_plugin.py`, `tests/distribution.py`, and `tests/theme.cjs`. Historical checks remain relevant to those unchanged files, but this comparison is not a new test run, native invocation, or browser acceptance receipt.
@@ -35,7 +51,7 @@ The checklist and verification receipts below describe the original review excep
 | skills.sh discovery | Conventional `skills/markmap/SKILL.md` and README install command with `--skill markmap --agent codex`. A custom marketplace file does not register a skills.sh listing. |
 | Approval/listing | At the original review these actions were pending. Current owner history confirms skills.sh listing completion and Git history records the source commits. OpenAI ingestion, approval and publication remain unverified; this reconciliation performs no install, upload or submission. |
 
-Sources: [OpenAI packaging](https://developers.openai.com/plugins/build/plugins), [submission validation](https://developers.openai.com/plugins/deploy/submission-errors), [submission flow and field limits](https://developers.openai.com/plugins/deploy/submission), [skill resources](https://developers.openai.com/plugins/build/skills), [plugin guidelines](https://developers.openai.com/plugins/plugin-guidelines). Skills-only plugins are supported but may face additional directory eligibility review; usefulness and originality remain reviewer decisions.
+Sources: [OpenAI packaging](https://developers.openai.com/plugins/build/plugins), [submission validation](https://developers.openai.com/plugins/deploy/submission-errors), [submission flow and field limits](https://developers.openai.com/plugins/deploy/submission), [skill resources](https://developers.openai.com/plugins/build/skills), [plugin guidelines](https://developers.openai.com/plugins/plugin-guidelines). These sources describe supported package formats and review requirements; they do not override the current intake blocker recorded above. Usefulness and originality remain reviewer decisions if a submission becomes eligible.
 
 Codex local discovery uses `.agents/skills` for projects and `~/.agents/skills` for users, as documented in [Build skills](https://learn.chatgpt.com/docs/build-skills). Optional UI metadata belongs in each skill's `agents/openai.yaml`.
 
@@ -70,10 +86,10 @@ The CDN template now defaults to light independently of OS/app settings. An acce
 
 **Owner visual acceptance:** the owner opened a single generated HTML demo built from the corrected template and accepted its light/dark toggle. This is owner presentation acceptance for theme behavior only. The agent did not open a browser, so no agent-side visual, zoom/fit, folding, runtime sanitization or CSP check exists. Prior ZIP/immutable risk snapshots predate this correction and must not be presented as covering it.
 
-## Owner actions requiring approval
+## Historical owner actions — submission steps currently parked
 
 1. Historical authorization: the owner approved preparing `0.1.3` and, after theme demo acceptance, committing and merging the reviewed source. Current Git history records preparation in `a501afd` and the rename in `7c6aaf1`. At the original review, the recorded public tags were `v0.1.0`, `v0.1.1`, and `v0.1.2`; current remote tags were not rechecked. The earlier pending telemetry-enabled install is not a current action item: owner history confirms listing completion. This record grants no new authority for tagging, releases, uploads, submission, publication, credentials or terms.
-2. Build a fresh local ZIP: `python3 scripts/package_plugin.py /tmp/markmap-skills-candidate.zip`. Keep its reported hash with the chosen source revision. Do not ZIP the whole checkout.
-3. For OpenAI, approve uploading that exact ZIP to [Platform Plugins](https://platform.openai.com/plugins), select the owning organization/project and verified developer identity, resolve ingestion findings, and submit for review. Organization owner or Apps Management Write access is required. Complete identity verification and accept any presented terms as the owner. Approve publication separately after acceptance. No additional persistent access is needed for the skills-only package.
+2. Local testing may use a fresh ZIP: `python3 scripts/package_plugin.py /tmp/markmap-skills-candidate.zip`. Keep its reported hash with the chosen source revision. Do not ZIP the whole checkout or treat packaging as submission eligibility.
+3. OpenAI upload/submission is parked under the current intake restriction. Only after confirming the resume condition above: select the owning organization/project and verified developer identity in [Platform Plugins](https://platform.openai.com/plugins), obtain upload/submission authority, and resolve required findings before review. Organization owner or Apps Management Write access is required. Complete identity verification and accept any presented terms as the owner; publication requires separate authority after acceptance.
 4. skills.sh listing is complete according to owner coordination history. Do not rerun installers or telemetry. Keep that status separate from OpenAI approval and from any claim that a specific current package or native client has passed acceptance.
 5. Remaining manual checks before claiming runtime security: the agent cannot initiate the blocked local-file route through another browser surface. Perform client smoke tests with a small non-sensitive input: direct and indirect mindmap requests should activate; a process flow should not; an ambiguous topic should ask for context; embedded script/HTML must not execute in template output. Confirm zoom, folding, light/dark appearance and offline output after compilation.
