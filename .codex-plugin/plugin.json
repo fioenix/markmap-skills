@@ -1,6 +1,7 @@
 {
   "name": "markmap-skills",
   "version": "0.1.4",
+  "requires_local_executor": true,
   "description": "Universal Markmap mindmaps for AI agents with strict cognitive structuring and standalone HTML rendering.",
   "author": {
     "name": "Fioenix",

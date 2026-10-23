@@ -87,6 +87,7 @@ fi
 echo "  ✓ Brand colors configured: light=$BRAND_COLOR, dark=$BRAND_DARK"
 python3 tests/distribution.py
 node tests/theme.cjs
+node tests/render-errors.cjs
 
 echo ""
 echo "=== [4/8] Claude Code Listing Compliance ==="
