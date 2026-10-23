@@ -149,7 +149,7 @@ Use the bundled `assets/template.html` relative to this installed skill director
 
 - **Network disclosure**: No maintainer backend or telemetry. CDN mode requests libraries from jsDelivr; CLI setup may contact npm. Host agent data policies apply.
 - **DOM & Script Injection Guard**: Encode Markdown as JSON and escape every `<` as `\u003c` before embedding. Keep source content as text; never execute raw HTML or scripts from documents.
-- **Sensitive Data Handling**: If user input contains payment card data (PCI DSS), protected health information (PHI), authentication tokens, or private credentials, halt processing immediately and request an anonymized draft.
+- **Restricted Data Handling**: If input contains payment card data (PCI DSS), protected health information (PHI), government identifiers (such as national ID/CCCD, passport, or social security numbers), authentication tokens, or private credentials, stop before generating or rendering files and request a redacted or anonymized draft. Do not repeat the restricted values in the response or copy them into artifacts.
 
 ---
 

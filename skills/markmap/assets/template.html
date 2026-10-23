@@ -66,6 +66,27 @@
       cursor: pointer;
     }
     #theme-toggle:focus-visible { outline: 2px solid var(--mm-fg); outline-offset: 3px; }
+    #render-error {
+      position: absolute;
+      top: 72px;
+      left: 5vw;
+      width: 90vw;
+      max-height: calc(100vh - 96px);
+      overflow: auto;
+      padding: 16px;
+      background: var(--mm-panel);
+      color: var(--mm-fg);
+      border: 1px solid var(--mm-fg);
+    }
+    #render-error p { margin: 8px 0; }
+    #source-recovery {
+      display: block;
+      width: 100%;
+      min-height: 160px;
+      background: var(--mm-bg);
+      color: var(--mm-fg);
+      border: 1px solid var(--mm-fg);
+    }
     .mm-toolbar {
       position: absolute;
       bottom: 24px;
@@ -85,6 +106,13 @@
 <body>
   <svg id="mindmap"></svg>
   <button id="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+  <section id="render-error" role="alert" hidden>
+    <h1>Mindmap could not be rendered</h1>
+    <p>The rendering libraries may be unavailable, or the embedded data could not be read. Copy the source below into a Markdown file. If the data is malformed, use your original .mindmap.md file.</p>
+    <p>For the CDN template, reconnect and reload this file. For self-contained HTML, run the installed skill's scripts/render.sh with your Markdown file. It requires Node.js/npx; first use may download packages from npm.</p>
+    <label for="source-recovery">Recoverable source (select and copy)</label>
+    <textarea id="source-recovery" readonly spellcheck="false"></textarea>
+  </section>
   <script id="theme-controller">
     (() => {
       const html = document.documentElement;
@@ -105,9 +133,10 @@
 
   <script>
     window.addEventListener("DOMContentLoaded", () => {
+      const mdEl = document.getElementById("markdown-source");
+      let md;
       try {
-        const mdEl = document.getElementById("markdown-source");
-        const md = JSON.parse(mdEl.textContent);
+        md = JSON.parse(mdEl.textContent);
         if (typeof md !== "string") throw new Error("Markdown payload must be a string");
         const { Transformer, Markmap, Toolbar } = window.markmap;
         const transformer = new Transformer();
@@ -135,6 +164,9 @@
         }
         mm.fit();
       } catch (err) {
+        document.getElementById("source-recovery").value =
+          typeof md === "string" ? md : mdEl.textContent;
+        document.getElementById("render-error").hidden = false;
         console.error("Markmap render failed:", err);
       }
     });

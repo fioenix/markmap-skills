@@ -8,8 +8,8 @@
 <h1 align="center">markmap-skills</h1>
 
 <p align="center">
-  <b>Universal, lightweight Markmap mindmap plugin for AI Agents (Claude Code, OpenAI Codex, Google Antigravity).</b><br>
-  Cognitive structuring with Miller's Law & MECE · 0 daemon · 0 token tax · Standalone HTML rendering.
+  <b>Create structured Markmap mindmaps with your AI agent.</b><br>
+  Structured branches · Folding and decision tracking · Editable Markdown and interactive HTML.
 </p>
 
 <p align="center">
@@ -23,32 +23,31 @@
 
 ---
 
-## ⚡ The Solution
+## ⚡ What It Does
 
-Most AI mindmap solutions suffer from two fatal architectural pitfalls:
-1. **Bloated MCP Servers & Idle Token Tax**: Running persistent background server processes, dragging in Playwright and a 300MB Chromium headless browser just to take a screenshot, while permanently burning 1,000+ tokens of schema definitions in every conversation turn.
-2. **Cognitive Sprawl**: Dumping raw paragraph-length prose into node trees, producing unreadable walls of text that defeat the visual purpose of a mindmap.
+`markmap-skills` turns task-authorized notes and documents into editable Markdown and interactive Markmap HTML. Its instructions guide branch grouping, concise labels, folding, and decision tracking. Review generated content against your source before relying on it.
 
-### Architecture Comparison
+### Outputs and Requirements
 
-| Capability | Heavyweight MCP / Headless | Raw LLM Output | **markmap-skills** |
-|---|---|---|---|
-| **Runtime Footprint** | 300MB+ Headless Chrome daemon | 0 MB | **0 MB (Zero daemon)** |
-| **Idle Token Tax** | 1,000+ tokens burned per turn | 0 tokens | **0 token overhead when idle** |
-| **Cognitive Structuring** | None (unfiltered text dump) | Unstructured | **Miller's Law (4–7 branches, depth 3–4, ≤ 8 words)** |
-| **Output Artifacts** | Static raster image (PNG) | Raw text | **Portable `.mindmap.md` + Standalone `.html`** |
-| **Multi-Agent Parity** | Platform-specific | Inconsistent | **Claude Code · OpenAI Codex · Google Antigravity** |
-| **Security Posture** | Subprocess execution risk | Safe | **Zero-privilege core + CSP-hardened template** |
+| Output or behavior | Requirements and limits |
+|---|---|
+| **Editable Markdown** | Generated within the host agent; content accuracy requires review. |
+| **Compiled HTML** | Uses Node.js/npx and pinned `markmap-cli`; initial compilation may download packages from npm. Libraries are embedded for offline viewing. |
+| **CDN template HTML** | Loads pinned libraries from jsDelivr and requires internet access. Source labels render as plain text. |
+| **Branch structure** | Instructions target 4–7 main branches, depth 3–4, and concise labels; these are generation guidelines rather than measured guarantees. |
+| **Runtime** | No bundled MCP server or maintainer daemon. Host processing and token use depend on the agent platform. |
 
 ---
 
-## 🔍 Before vs. After Comparison
+## 🔍 Example Transformations
 
-| Scenario | Default LLM Output (Before) | Structured with `markmap-skills` (After) |
+The examples below illustrate formatting, not benchmark results or comparisons with other products. Include only facts and decisions supported by the input.
+
+| Scenario | Source material | Mindmap representation |
 |---|---|---|
-| **Gateway Architecture** | `- The system uses an API Gateway running on Cloudflare Workers to handle user requests, authenticating users via JWT tokens signed with RSA encryption...` (32 words, verbose narrative) | `- **Auth**: JWT with RSA signatures`<br>`- **Rate Limit**: Token bucket at edge`<br>`- ~~Kong Gateway: Excessive idle cost~~` (Concise, keyword-first, tracks rejected alternatives) |
-| **Branch Structure** | Dumps 14 flat sibling bullet points on the root, exceeding human working memory capacity. | Clusters into 4 MECE categories (Ingress, Compute, Storage, Telemetry); deep specs fold automatically with `<!-- markmap: fold -->`. |
-| **Decision Tracking** | Static descriptive text with no sense of milestone completion or pending trade-offs. | `- [x] State snapshot serialization`<br>`- [ ] WebSocket reconnection backoff`<br>`+ Low latency / - Stale read risk` |
+| **Gateway Architecture** | The gateway uses JWT with RSA signatures and an edge token bucket. Kong was rejected because of idle cost. | `- **Auth**: JWT with RSA signatures`<br>`- **Rate Limit**: Token bucket at edge`<br>`- ~~Kong Gateway: Idle cost~~` |
+| **Branch Structure** | Notes describe ingress, compute, storage, and telemetry components. | Group nodes under those four categories; use `<!-- markmap: fold -->` for dense detail. |
+| **Decision Tracking** | State snapshot serialization is complete. WebSocket reconnection backoff is pending. Low latency trades off against stale reads. | `- [x] State snapshot serialization`<br>`- [ ] WebSocket reconnection backoff`<br>`+ Low latency / - Stale read risk` |
 
 ---
 
@@ -97,6 +96,8 @@ Build the skills-only upload ZIP locally:
 python3 scripts/package_plugin.py /tmp/markmap-skills-0.1.4.zip
 ```
 The ZIP uses the supported `.codex-plugin/plugin.json` layout and contains exactly one plugin root. It excludes development files and compatibility catalogs. Upload, identity verification, review, and publication require owner action in [Platform Plugins](https://platform.openai.com/plugins). See the [historical `0.1.3` readiness audit](docs/openai-skills-readiness.md) for background context (that historical audit does not validate or approve `0.1.4`; the current release requires fresh verification checks and the separate portal owner actions stated above).
+
+This OpenAI package declares Desktop only to retain its local Node.js/npx rendering workflow. Directory installation requires the ChatGPT desktop app, and use requires a locally running thread. The CDN template remains available within that package; its presence does not remove the declared platform restriction. Direct skill installation through other distributions is unchanged.
 
 #### Via Shared Finolabs Marketplace Catalog (`Finolabs`):
 The canonical multi-plugin Codex catalog (`name: "Finolabs"`, `interface.displayName: "Finolabs"`) is published in `fioenix/agybird` and groups `agybird` (`agybird@Finolabs`), `vietnamizer` (`vietnamizer@Finolabs`), and `markmap-skills` (`markmap-skills@Finolabs`) without merging repositories.
@@ -196,7 +197,7 @@ markmap:
 
 ## 🔄 Opportunistic Multi-Skill Synergy
 
-`markmap-skills` is built on a **Zero-Coercion, Zero-Hard-Dependency** model: it works 100% standalone out of the box. However, when paired with complementary skills inside an agent harness, it acts as a high-value **Visual Converger**:
+`markmap-skills` can structure a mindmap without auxiliary skills. HTML rendering has the requirements listed above. When complementary skills are already available in the host agent, their outputs can also become mindmap inputs:
 
 | Skill in Harness | Upstream Role | `markmap` Downstream Role |
 |---|---|---|
@@ -266,7 +267,7 @@ markmap-skills/
 │       ├── agents/openai.yaml  # Skill-local Codex UI metadata
 │       ├── scripts/render.sh   # Pinned renderer, included in skill installs
 │       └── assets/
-│           └── template.html   # Standalone HTML artifact template (CSP hardened)
+│           └── template.html   # CDN template with CSP and plain-text labels
 ├── scripts/
 │   ├── build_icon.py           # Portable vector icon renderer
 │   ├── render.sh               # Hardened CLI helper (markmap-cli wrapper)
